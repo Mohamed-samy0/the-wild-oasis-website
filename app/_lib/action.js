@@ -102,3 +102,35 @@ export async function updateReservation(formDate) {
   revalidatePath(`/account/reservations`);
   redirect("/account/reservations");
 }
+
+export async function createReview(formData) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in to post a review");
+
+  const newReview = {
+    guestId: session.user.guestId,
+    cabinId: Number(formData.get("cabinId")),
+    rating: Number(formData.get("rating")),
+    text: formData.get("text"),
+  };
+
+  const { error } = await supabase.from("reviews").insert([newReview]);
+
+  if (error) throw new Error("Review could not be created");
+
+  revalidatePath(`/cabins/${newReview.cabinId}`);
+}
+
+
+export async function deleteReview(reviewId) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+  const { error } = await supabase
+    .from("reviews")
+    .delete()
+    .eq("id", reviewId)
+    .eq("guestId", session.user.guestId);
+
+  if (error) throw new Error("Review could not be deleted");
+  revalidatePath("/cabins"); 
+}
