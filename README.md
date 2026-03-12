@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌲 The Wild Oasis - Customer Portal
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-First, run the development server:
+A full-stack, luxurious cabin booking platform built with **Next.js (App Router)**. This is the customer-facing application where users can explore cabins, make reservations, manage their profiles, and share their experiences.
 
+🔗 **[Live Demo]https://the-rustic-haven-booking.vercel.app/**
+
+## ✨ Key Features
+
+### 🏨 Core Booking System
+
+- **Cabin Exploration:** Users can browse luxurious cabins, view detailed descriptions, capacities, prices, and high-quality images.
+- **Smart Filtering:** Filter cabins based on guest capacity to find the perfect fit.
+- **Authentication:** Secure Google OAuth login integrated via **NextAuth.js**.
+- **Reservation Flow:** Interactive date selection using `react-day-picker` ensuring no double-bookings.
+- **Guest Dashboard:** A protected user area to manage reservations (edit/delete) and update profile information.
+
+### ⭐ Custom Feature: Full-Stack Review System
+
+To extend the core functionality and enhance the user experience, I engineered a complete review system from scratch:
+
+- **Dynamic Average Ratings:** Automatically calculates and displays the average star rating for each cabin based on real user feedback.
+- **Add Reviews:** Authenticated guests can submit a 1-5 star rating and a written review using **Next.js Server Actions**.
+- **Delete Reviews:** Authorized users can delete their own reviews securely, with instant UI updates using `revalidatePath`.
+- **Database Relational Modeling:** Designed and integrated a `reviews` table in Supabase, linked with Foreign Keys to `cabins` and `guests` tables.
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, Server Components, Server Actions)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Database & Storage:** [Supabase](https://supabase.com/) (PostgreSQL)
+- **Authentication:** [NextAuth.js](https://next-auth.js.org/)
+- **Date Handling:** `date-fns` & `react-day-picker`
+
+## 🚀 Getting Started (Local Development)
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone [https://github.com/mohamed-samy0/the-wild-oasis-website.git](https://github.com/mohamed-samy0/the-wild-oasis-website.git)
+
+   ```
+
+2. **Install dependencies:**
+
+````bash
+ cd the-wild-oasis-website
+ npm install
+
+````
+
+3. **Set up Environment Variables:**
+ Create a .env.local file in the root directory and add your Supabase and Google Auth credentials:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+ NEXTAUTH_URL=http://localhost:3000
+ NEXTAUTH_SECRET=your_nextauth_secret
+ GOOGLE_CLIENT_ID=your_google_client_id
+ GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+````
+3. **Set up Environment Variables:**
+```bash
+  npm run dev
+
 ```
+  🗄️ Database Architecture
+The PostgreSQL database (managed via Supabase) consists of 4 main relational tables:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+cabins: Stores cabin details, pricing, and images.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+guests: Stores authenticated user details.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+bookings: Manages reservation dates, prices, and status.
 
-## Learn More
+reviews (Custom): Stores user feedback, ratings, and links to specific guests and cabins.
 
-To learn more about Next.js, take a look at the following resources:
+👨‍💻 Author Mohamed Samy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+React / Next.js Front-End Developer & Artificial Intelligence Student.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+GitHub: (https://github.com/Mohamed-samy0)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+LinkedIn: Mohamed Samy
